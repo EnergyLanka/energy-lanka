@@ -12,7 +12,7 @@ export default function Footer() {
         </div>
         <div className="text-sm">
           <div className="font-semibold">Contact</div>
-          <p className="mt-2 text-slate-600">hello@energylanka.lk<br/>+94 11 XXX XXXX<br/>Colombo, Sri Lanka</p>
+          <p className="mt-2 text-slate-600">info@energylanka.com<br/>+94 11 XXX XXXX<br/>Colombo, Sri Lanka</p>
         </div>
       </div>
       <div className="border-t border-slate-200 py-4 text-center text-xs text-slate-500">
