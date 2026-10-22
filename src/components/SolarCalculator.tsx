@@ -62,9 +62,12 @@ export default function SolarCalculator() {
         </p>
       </div>
 
-      {/* FORCED DARK BACKGROUND HERE */}
-      <div className="rounded-xl bg-brand p-6 text-white shadow-xl ring-1 ring-brand-dark">
-        <h2 className="text-xl font-bold font-serif text-gold">Your estimated system</h2>
+      {/* FORCED DARK BACKGROUND USING INLINE STYLE */}
+      <div 
+        className="rounded-xl p-6 text-white shadow-xl ring-1 ring-brand-dark" 
+        style={{ backgroundColor: "#0A192F" }}
+      >
+        <h2 className="text-xl font-bold font-serif" style={{ color: "#D4AF37" }}>Your estimated system</h2>
         <div className="mt-4 space-y-3 text-sm">
           <Row label="Recommended system size" value={`${result.systemKW} kW`} />
           {hasBattery && <Row label="Suggested battery" value={`${result.batteryKWh} kWh`} />}
@@ -72,8 +75,8 @@ export default function SolarCalculator() {
           <Row label="Monthly savings on bill" value={`LKR ${result.monthlySavings.toLocaleString()}`} />
           <Row label={`Export earnings @ LKR ${result.exportRate}/kWh`} value={`LKR ${result.monthlyExport.toLocaleString()}/mo`} />
           <Row label="Total monthly benefit" value={`LKR ${result.monthlyBenefit.toLocaleString()}`} />
-          <div className="mt-6 rounded-xl bg-white/10 p-4 border border-white/20">
-            <div className="text-4xl font-serif font-bold text-gold">{result.paybackYears} <span className="text-2xl">years</span></div>
+          <div className="mt-6 rounded-xl p-4 border border-white/20" style={{ backgroundColor: "rgba(255,255,255,0.1)" }}>
+            <div className="text-4xl font-serif font-bold" style={{ color: "#D4AF37" }}>{result.paybackYears} <span className="text-2xl">years</span></div>
             <div className="text-white/80 text-xs uppercase tracking-widest mt-1">Estimated payback period</div>
           </div>
         </div>
