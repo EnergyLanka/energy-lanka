@@ -1,20 +1,23 @@
 import Link from "next/link";
 import type { Product } from "@prisma/client";
 
-// Specific images for each product
+// Verified specific images for each product
 const imageMapping: Record<string, string> = {
-  "aiko-comet-3n72-675w": "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&q=80&w=800", // Sleek black panel
-  "jinko-tiger-neo-620w": "https://images.unsplash.com/photo-1592833159155-c62df1b65634?auto=format&fit=crop&q=80&w=800", // Standard blue panel
-  "ja-solar-deepblue-580w": "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=800", // Array of panels
-  "longi-ecolife-510w": "https://images.unsplash.com/photo-1548613053-22087dd8edb8?auto=format&fit=crop&q=80&w=800", // Black panel
-  "jinko-655w-bifacial-commercial": "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=800", // Commercial array
-  "canadian-solar-hiku-600w": "https://images.unsplash.com/photo-1592833159155-c62df1b65634?auto=format&fit=crop&q=80&w=800", // Standard panel
-  "byd-battery-box-hvs-10kwh": "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&q=80&w=800", // Home battery
-  "byd-lv-5-0-5kwh": "https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&q=80&w=800", // Tech battery
-  "foxess-lv5200-5kwh": "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&q=80&w=800", // Home battery
-  "pylontech-us3000c-3-5kwh": "https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&q=80&w=800", // Tech battery
-  "sigenergy-sigenstor-13kwh": "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&q=80&w=800", // Home battery
-  "huawei-luna2000-15kwh": "https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&q=80&w=800", // Tech battery
+  // Panels - verified solar images
+  "aiko-comet-3n72-675w": "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=800", 
+  "jinko-tiger-neo-620w": "https://images.unsplash.com/photo-1592833159155-c62df1b65634?auto=format&fit=crop&q=80&w=800", 
+  "ja-solar-deepblue-580w": "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=800", 
+  "longi-ecolife-510w": "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&q=80&w=800", 
+  "jinko-655w-bifacial-commercial": "https://images.unsplash.com/photo-1548613053-22087dd8edb8?auto=format&fit=crop&q=80&w=800", 
+  "canadian-solar-hiku-600w": "https://images.unsplash.com/photo-1592833159155-c62df1b65634?auto=format&fit=crop&q=80&w=800", 
+  
+  // Batteries - verified tech/energy storage images
+  "byd-battery-box-hvs-10kwh": "https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&q=80&w=800", 
+  "byd-lv-5-0-5kwh": "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&q=80&w=800", 
+  "foxess-lv5200-5kwh": "https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&q=80&w=800", 
+  "pylontech-us3000c-3-5kwh": "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&q=80&w=800", 
+  "sigenergy-sigenstor-13kwh": "https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&q=80&w=800", 
+  "huawei-luna2000-15kwh": "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&q=80&w=800", 
 };
 
 export default function ProductCard({ product }: { product: Product }) {
