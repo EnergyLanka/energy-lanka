@@ -1,26 +1,11 @@
 import Link from "next/link";
 import type { Product } from "@prisma/client";
 
-// Guaranteed-to-work, high-quality images mapped by brand
 export default function ProductCard({ product }: { product: Product }) {
-  // Check the brand and assign a specific, working image
-  const getImage = () => {
-    if (product.brand === "AIKO") return "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&q=80&w=800"; // Black panel
-    if (product.brand === "LONGi") return "https://images.unsplash.com/photo-1548613053-22087dd8edb8?auto=format&fit=crop&q=80&w=800"; // Sleek panel
-    if (product.brand === "Jinko Solar") return "https://images.unsplash.com/photo-1592833159155-c62df1b65634?auto=format&fit=crop&q=80&w=800"; // Blue array
-    if (product.brand === "JA Solar") return "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=800"; // Commercial array
-    if (product.brand === "Trina Solar") return "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=800"; // Rooftop panel
-    if (product.brand === "Canadian Solar") return "https://images.unsplash.com/photo-1592833159155-c62df1b65634?auto=format&fit=crop&q=80&w=800"; // Ground mount
-    
-    // Batteries
-    if (product.brand === "BYD" || product.brand === "FoxESS" || product.brand === "Sigenergy") {
-      return "https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&q=80&w=800"; // Home battery
-    }
-
-    return "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=800"; // Fallback
-  };
-
-  const imageUrl = getImage();
+  // Use distinct, guaranteed-to-work images based on category
+  const imageUrl = product.category === "panel"
+    ? "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=800" // Solar panel array
+    : "https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&q=80&w=800"; // Home battery
 
   return (
     <Link href={`/products/${product.slug}`} className="card group flex flex-col h-full bg-white border border-slate-200">
