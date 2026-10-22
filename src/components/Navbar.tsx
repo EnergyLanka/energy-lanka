@@ -13,7 +13,7 @@ export default function Navbar() {
           <span className="text-3xl">☀</span> Energy Lanka
         </Link>
         <div className="hidden lg:flex gap-8 text-sm font-medium tracking-wide text-slate-300">
-          <Link href="/" className="hover:text-gold transition-colors">Residential</Link>
+          <Link href="/residential" className="hover:text-gold transition-colors">Residential</Link>
           <Link href="/commercial" className="hover:text-gold transition-colors">Commercial</Link>
           <Link href="/products" className="hover:text-gold transition-colors">All Products</Link>
           <Link href="/calculator" className="hover:text-gold transition-colors">ROI Calculator</Link>
