@@ -5,8 +5,11 @@
 :root { color-scheme: light; }
 body { @apply bg-slate-50 text-slate-800 antialiased; }
 
-.btn { @apply inline-flex items-center justify-center rounded-lg px-5 py-3 font-semibold transition; }
-.btn-primary { @apply btn bg-brand text-white hover:bg-brand-dark; }
-.btn-outline { @apply btn border border-brand text-brand hover:bg-brand-light; }
-.card { @apply rounded-2xl bg-white shadow-sm ring-1 ring-slate-200; }
-.input { @apply w-full rounded-lg border border-slate-300 px-3 py-2 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20; }
+h1, h2, h3, h4 { @apply font-serif; }
+
+.btn { @apply inline-flex items-center justify-center rounded-md px-6 py-3 font-semibold transition-all duration-300 shadow-sm; }
+.btn-primary { @apply btn bg-brand text-white hover:bg-brand-light hover:shadow-md; }
+.btn-gold { @apply btn bg-gold text-brand-dark hover:bg-gold-light hover:shadow-md; }
+.btn-outline { @apply btn border-2 border-brand text-brand hover:bg-brand hover:text-white; }
+.card { @apply rounded-xl bg-white shadow-sm ring-1 ring-slate-200 overflow-hidden transition-all duration-300 hover:shadow-lg; }
+.input { @apply w-full rounded-md border border-slate-300 px-4 py-3 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold; }
