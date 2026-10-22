@@ -1,0 +1,167 @@
+import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+
+export async function GET() {
+  const products = [
+    // --- SOLAR PANELS ---
+    {
+      slug: "aiko-comet-3n72-675w",
+      name: "AIKO Comet 3N72 675W",
+      brand: "AIKO",
+      category: "panel",
+      priceLKR: 37500,
+      capacityW: 675,
+      efficiency: 25.0,
+      warrantyYrs: 25,
+      badge: "World's Most Efficient",
+      description: "Back-contact (BC) module with 25.0% mass-production efficiency. Premium choice for maximum power density. (Distributed by SunBeam Group)",
+      specs: JSON.stringify({ technology: "Back Contact (BC)", power: "675 W", efficiency: "25.0%", warranty: "25 yr product / 30 yr performance" }),
+    },
+    {
+      slug: "jinko-tiger-neo-620w",
+      name: "Jinko Tiger Neo 620W",
+      brand: "Jinko Solar",
+      category: "panel",
+      priceLKR: 34850,
+      capacityW: 620,
+      efficiency: 22.8,
+      warrantyYrs: 25,
+      badge: "Best Seller",
+      description: "N-Type TOPCon technology with excellent low-light performance. A versatile panel suitable for both residential and commercial rooftops.",
+      specs: JSON.stringify({ technology: "N-Type TOPCon", power: "620 W", efficiency: "22.8%" }),
+    },
+    {
+      slug: "ja-solar-deepblue-580w",
+      name: "JA Solar DeepBlue 5.0 580W",
+      brand: "JA Solar",
+      category: "panel",
+      priceLKR: 23000,
+      capacityW: 580,
+      efficiency: 24.1,
+      warrantyYrs: 25,
+      badge: "Best Value",
+      description: "TOPCon technology with strong value per watt. A reliable workhorse for large-scale installations.",
+      specs: JSON.stringify({ technology: "TOPCon", power: "580 W", efficiency: "24.1%" }),
+    },
+    {
+      slug: "longi-ecolife-510w",
+      name: "LONGi EcoLife 510W",
+      brand: "LONGi",
+      category: "panel",
+      priceLKR: 27000,
+      capacityW: 510,
+      efficiency: 25.0,
+      warrantyYrs: 25,
+      badge: "Top Tier",
+      description: "HIBC technology with 25.0% efficiency. Excellent low-light performance and sleek all-black design.",
+      specs: JSON.stringify({ technology: "HIBC", power: "510 W", efficiency: "25.0%" }),
+    },
+    {
+      slug: "jinko-655w-bifacial-commercial",
+      name: "Jinko 655W N-Type Bifacial",
+      brand: "Jinko Solar",
+      category: "panel",
+      priceLKR: 38500,
+      capacityW: 655,
+      efficiency: 23.2,
+      warrantyYrs: 30,
+      badge: "Commercial Grade",
+      description: "Double-glass bifacial module designed for commercial and industrial projects. Generates power from both front and rear sides.",
+      specs: JSON.stringify({ technology: "N-Type Bifacial", power: "655 W", cell: "Half-cut", suitable: "Commercial" }),
+    },
+    {
+      slug: "canadian-solar-hiku-600w",
+      name: "Canadian Solar HiKu6 600W",
+      brand: "Canadian Solar",
+      category: "panel",
+      priceLKR: 31500,
+      capacityW: 600,
+      efficiency: 22.5,
+      warrantyYrs: 25,
+      description: "Reliable TOPCon panel from a globally trusted brand. A solid choice for residential and commercial systems.",
+      specs: JSON.stringify({ technology: "TOPCon", power: "600 W", efficiency: "22.5%" }),
+    },
+
+    // --- BATTERIES ---
+    {
+      slug: "byd-battery-box-hvs-10kwh",
+      name: "BYD Battery-Box Premium HVS 10.2 kWh",
+      brand: "BYD",
+      category: "battery",
+      priceLKR: 1950000,
+      capacityW: 10200,
+      warrantyYrs: 10,
+      badge: "Best All-Round",
+      description: "High-voltage, scalable LFP battery. Modular design (5.1–22.1 kWh) and compatible with most major inverters. (Distributed by Hayleys Solar)",
+      specs: JSON.stringify({ capacity: "10.2 kWh (modular)", chemistry: "LFP", type: "High Voltage" }),
+    },
+    {
+      slug: "byd-lv-5-0-5kwh",
+      name: "BYD LV 5.0 5.1 kWh",
+      brand: "BYD",
+      category: "battery",
+      priceLKR: 980000,
+      capacityW: 5100,
+      warrantyYrs: 10,
+      badge: "Residential Compact",
+      description: "Compact and modular low-voltage battery. Perfect for residential energy storage and backup.",
+      specs: JSON.stringify({ capacity: "5.1 kWh", chemistry: "LFP", type: "Low Voltage" }),
+    },
+    {
+      slug: "foxess-lv5200-5kwh",
+      name: "FoxESS LV5200 5.1 kWh",
+      brand: "FoxESS",
+      category: "battery",
+      priceLKR: 330000,
+      capacityW: 5100,
+      warrantyYrs: 10,
+      badge: "Best Value / kWh",
+      description: "A reliable and affordable low-voltage battery option. A popular choice for entry-level storage systems.",
+      specs: JSON.stringify({ capacity: "5.1 kWh", chemistry: "LFP", type: "Low Voltage" }),
+    },
+    {
+      slug: "pylontech-us3000c-3-5kwh",
+      name: "Pylontech US3000C 3.5 kWh",
+      brand: "Pylontech",
+      category: "battery",
+      priceLKR: 620000,
+      capacityW: 3500,
+      warrantyYrs: 10,
+      description: "A widely-used, modular low-voltage battery known for its reliability and broad compatibility.",
+      specs: JSON.stringify({ capacity: "3.5 kWh", chemistry: "LFP", type: "Low Voltage" }),
+    },
+    {
+      slug: "sigenergy-sigenstor-13kwh",
+      name: "Sigenergy SigenStor 13 kWh",
+      brand: "Sigenergy",
+      category: "battery",
+      priceLKR: 2750000,
+      capacityW: 13000,
+      warrantyYrs: 10,
+      badge: "Most Flexible",
+      description: "Fully modular architecture. Expand battery, inverter, or gateway independently for ultimate system design flexibility.",
+      specs: JSON.stringify({ capacity: "13 kWh (expandable)", chemistry: "LFP" }),
+    },
+    {
+      slug: "huawei-luna2000-15kwh",
+      name: "Huawei LUNA2000 15 kWh",
+      brand: "Huawei",
+      category: "battery",
+      priceLKR: 2400000,
+      capacityW: 15000,
+      warrantyYrs: 10,
+      description: "Seamless integration with Huawei SUN2000 inverters and the FusionSolar app. Ideal for smart home ecosystems.",
+      specs: JSON.stringify({ capacity: "15 kWh (3×5 kWh modules)", chemistry: "LFP" }),
+    },
+  ];
+
+  try {
+    // Clear any existing products to avoid duplicates
+    await prisma.product.deleteMany({});
+    // Insert all the new products
+    await prisma.product.createMany({ data: products });
+    return NextResponse.json({ message: "Database seeded with real products successfully!" });
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
