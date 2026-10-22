@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import AddToCart from "./AddToCart";
+import ProductImage from "@/components/ProductImage";
 
 export default async function ProductDetail({ params }: { params: { slug: string } }) {
   const product = await prisma.product.findUnique({ where: { slug: params.slug } });
@@ -9,8 +10,8 @@ export default async function ProductDetail({ params }: { params: { slug: string
 
   return (
     <div className="grid gap-8 lg:grid-cols-2">
-      <div className="flex h-80 items-center justify-center rounded-3xl bg-brand-light text-8xl">
-        {product.category === "panel" ? "🔋" : "⚡"}
+      <div className="group flex h-80 items-center justify-center rounded-3xl bg-slate-100 p-6">
+        <ProductImage slug={product.slug} alt={product.name} />
       </div>
       <div>
         {product.badge && <span className="rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold text-brand">{product.badge}</span>}
