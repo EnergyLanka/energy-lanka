@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root { color-scheme: light; }
-body { @apply bg-slate-50 text-slate-800 antialiased; }
+body { @apply bg-slate-50 text-slate-800 antialiased overflow-x-hidden; }
 
 h1, h2, h3, h4 { @apply font-serif; }
 
