@@ -156,10 +156,16 @@ export async function GET() {
   ];
 
   try {
-    // Clear any existing products to avoid duplicates
+    // 1. Delete dependent records first to prevent foreign key errors
+    await prisma.orderItem.deleteMany({});
+    await prisma.order.deleteMany({});
+    
+    // 2. Now it is safe to delete the old products
     await prisma.product.deleteMany({});
-    // Insert all the new products
+    
+    // 3. Insert the new real products
     await prisma.product.createMany({ data: products });
+    
     return NextResponse.json({ message: "Database seeded with real products successfully!" });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
