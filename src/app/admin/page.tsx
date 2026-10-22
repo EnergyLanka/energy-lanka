@@ -16,6 +16,19 @@ export default function AdminPage() {
     setAuthed(true);
   };
 
+  const markPaid = async (orderId: string) => {
+    const res = await fetch("/api/admin/mark-paid", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ orderId, pwd }),
+    });
+    if (res.ok) {
+      setOrders(orders.map(o => o.id === orderId ? { ...o, status: "paid" } : o));
+    } else {
+      alert("Failed to update status");
+    }
+  };
+
   if (!authed) {
     return (
       <div className="card mx-auto max-w-sm p-6 mt-10">
@@ -35,9 +48,16 @@ export default function AdminPage() {
       <div className="mt-2 space-y-2">
         {orders.length === 0 && <p className="text-sm text-slate-500">No orders yet.</p>}
         {orders.map((o) => (
-          <div key={o.id} className="card flex flex-col sm:flex-row justify-between p-4 text-sm gap-2">
+          <div key={o.id} className="card flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 text-sm gap-2">
             <span className="font-semibold">{o.orderRef} — {o.customer} — {o.phone}</span>
-            <span>LKR {o.totalLKR.toLocaleString()} · <b className={o.status === "paid" ? "text-green-600" : "text-amber-600"}>{o.status.toUpperCase()}</b></span>
+            <div className="flex items-center gap-4">
+              <span>LKR {o.totalLKR.toLocaleString()} · <b className={o.status === "paid" ? "text-green-600" : "text-amber-600"}>{o.status.toUpperCase()}</b></span>
+              {o.status === "pending" && (
+                <button onClick={() => markPaid(o.id)} className="bg-brand text-white px-3 py-1 rounded text-xs hover:bg-brand-dark transition">
+                  Mark as Paid
+                </button>
+              )}
+            </div>
           </div>
         ))}
       </div>
