@@ -3,13 +3,11 @@ import { useMemo, useState } from "react";
 import { TARIFFS } from "@/lib/tariffs";
 
 export default function SolarCalculator() {
-  const [monthlyBill, setMonthlyBill] = useState(15000);
+  const [monthlyBill, setMonthlyBill] = useState(25000);
   const [hasBattery, setHasBattery] = useState(true);
 
   const result = useMemo(() => {
-    // Safety check to prevent NaN crashes
     const safeBill = isNaN(monthlyBill) || monthlyBill <= 0 ? 1 : monthlyBill;
-    
     const monthlyKWh = safeBill / TARIFFS.avgImportTariff;
     const systemKW = monthlyKWh / (30 * TARIFFS.peakSunHours * TARIFFS.systemEfficiency);
     const cappedKW = Math.min(Math.max(systemKW, 1), 40);
@@ -20,7 +18,6 @@ export default function SolarCalculator() {
     const totalCost = panelCost + batteryCost;
 
     const monthlySavings = safeBill * 0.9;
-
     const monthlyGen = cappedKW * 30 * TARIFFS.peakSunHours * TARIFFS.systemEfficiency;
     const exportKWh = monthlyGen * 0.3;
     const exportRate = hasBattery
@@ -29,7 +26,6 @@ export default function SolarCalculator() {
       ? TARIFFS.netPlusUpTo10kW
       : TARIFFS.netPlus10to40kW;
     const monthlyExport = exportKWh * exportRate;
-
     const monthlyBenefit = monthlySavings + monthlyExport;
     const paybackYears = monthlyBenefit > 0 ? totalCost / (monthlyBenefit * 12) : 0;
 
@@ -66,7 +62,8 @@ export default function SolarCalculator() {
         </p>
       </div>
 
-      <div className="card bg-brand p-6 text-white border-0">
+      {/* FORCED DARK BACKGROUND HERE */}
+      <div className="rounded-xl bg-brand p-6 text-white shadow-xl ring-1 ring-brand-dark">
         <h2 className="text-xl font-bold font-serif text-gold">Your estimated system</h2>
         <div className="mt-4 space-y-3 text-sm">
           <Row label="Recommended system size" value={`${result.systemKW} kW`} />
