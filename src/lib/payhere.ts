@@ -1,7 +1,4 @@
-import crypto from "crypto";
-
-const md5 = (s: string) =>
-  crypto.createHash("md5").update(s).digest("hex").toUpperCase();
+import md5 from "md5";
 
 export function payHereCheckoutHash(
   orderId: string,
@@ -10,20 +7,28 @@ export function payHereCheckoutHash(
 ) {
   const merchantId = process.env.PAYHERE_MERCHANT_ID || "";
   const secret = process.env.PAYHERE_MERCHANT_SECRET || "";
-  return md5(merchantId + orderId + amount.toFixed(2) + currency + md5(secret));
+
+  // 1. Create the hashed secret (Uppercase MD5)
+  const hashedSecret = md5(secret).toUpperCase();
+
+  // 2. Format the amount to exactly two decimal places
+  const amountFormatted = amount.toFixed(2);
+
+  // 3. Concatenate the string in the exact order PayHere requires
+  const stringToHash = merchantId + orderId + amountFormatted + currency + hashedSecret;
+
+  // 4. Return the final hash in Uppercase
+  return md5(stringToHash).toUpperCase();
 }
 
 export function verifyPayHereNotify(body: Record<string, string>) {
   const secret = process.env.PAYHERE_MERCHANT_SECRET || "";
-  const local = md5(
-    body.merchant_id +
-      body.order_id +
-      body.payhere_amount +
-      body.payhere_currency +
-      body.status_code +
-      md5(secret)
-  );
-  return local === body.md5sig;
+  const hashedSecret = md5(secret).toUpperCase();
+  
+  const localString = body.merchant_id + body.order_id + body.payhere_amount + body.payhere_currency + body.status_code + hashedSecret;
+  const localHash = md5(localString).toUpperCase();
+  
+  return localHash === body.md5sig;
 }
 
 export const PAYHERE_CHECKOUT_URL = (sandbox: boolean) =>
