@@ -5,7 +5,7 @@ export default function ProductCard({ product }: { product: Product }) {
   // Use high-quality Unsplash images based on category
   const imageUrl = product.category === "panel" 
     ? "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=800"
-    : "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=800";
+    : "https://images.unsplash.com/photo-1619648734898-272e2f531195?auto=format&fit=crop&q=80&w=800"; // Real home battery
 
   return (
     <Link href={`/products/${product.slug}`} className="card group flex flex-col h-full">
