@@ -1,0 +1,5 @@
+UNRESOLVED aiko-z-series-500w, aiko-infinite-ultra-690w, aiko-infinite-ultra-670w (no matching product on AIKO products page; slugs likely invented or renamed)
+UNRESOLVED longi-hi-mo-7-560w longi-hi-mo-7-590w longi-hi-mo-5-530w longi-hi-mo-5-555w (no image found on LONGi modules page)
+UNRESOLVED all 10 ja-solar-* slugs (no product image found yet)
+UNRESOLVED all 10 canadian-solar-* slugs (not yet searched)
+UNRESOLVED byd-battery-box-hvs-10kwh byd-lv-5-0-5kwh foxess-lv5200-5kwh sigenergy-sigenstor-13kwh (not yet searched)
