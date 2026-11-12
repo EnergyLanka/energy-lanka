@@ -16,7 +16,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-slate-200 py-4 text-center text-xs text-slate-500">
-        © {new Date().getFullYear()} Energy Lanka. Prices in LKR and may exclude import duty/VAT.
+        © {new Date().getFullYear()} Energy Lanka.
       </div>
     </footer>
   );

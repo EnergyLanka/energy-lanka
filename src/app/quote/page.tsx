@@ -1,10 +1,15 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function QuotePage() {
   const [done, setDone] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", district: "", monthlyBill: "", message: "" });
   
+  useEffect(() => {
+    const product = new URLSearchParams(window.location.search).get("product");
+    if (product) setForm((f) => ({ ...f, message: `I'm interested in: ${product}` }));
+  }, []);
+
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     const res = await fetch("/api/quote", { 
@@ -34,7 +39,7 @@ export default function QuotePage() {
         <input required className="input" placeholder="Phone" onChange={(e) => setForm({ ...form, phone: e.target.value })} />
         <input required className="input" placeholder="District (e.g. Colombo)" onChange={(e) => setForm({ ...form, district: e.target.value })} />
         <input className="input" type="number" placeholder="Average monthly electricity bill (LKR)" onChange={(e) => setForm({ ...form, monthlyBill: e.target.value })} />
-        <textarea className="input" rows={3} placeholder="Tell us about your roof, goals, etc." onChange={(e) => setForm({ ...form, message: e.target.value })} />
+        <textarea className="input" rows={3} placeholder="Tell us about your roof, goals, etc." value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
         <button className="btn-primary w-full">Submit request</button>
       </form>
     </div>

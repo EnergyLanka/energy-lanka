@@ -71,7 +71,6 @@ export default function SolarCalculator() {
         <div className="mt-4 space-y-3 text-sm">
           <Row label="Recommended system size" value={`${result.systemKW} kW`} />
           {hasBattery && <Row label="Suggested battery" value={`${result.batteryKWh} kWh`} />}
-          <Row label="Estimated installed cost" value={`LKR ${result.totalCost.toLocaleString()}`} />
           <Row label="Monthly savings on bill" value={`LKR ${result.monthlySavings.toLocaleString()}`} />
           <Row label={`Export earnings @ LKR ${result.exportRate}/kWh`} value={`LKR ${result.monthlyExport.toLocaleString()}/mo`} />
           <Row label="Total monthly benefit" value={`LKR ${result.monthlyBenefit.toLocaleString()}`} />

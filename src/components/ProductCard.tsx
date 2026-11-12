@@ -22,8 +22,8 @@ export default function ProductCard({ product }: { product: Product }) {
           {product.warrantyYrs} yr warranty
         </p>
         <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-          <div className="text-xl font-bold text-brand">LKR {product.priceLKR.toLocaleString()}</div>
-          <div className="text-xs text-brand font-medium uppercase tracking-wider group-hover:text-gold transition-colors">View Details →</div>
+          <div className="text-sm font-bold text-brand uppercase tracking-wider">Price on request</div>
+          <div className="text-xs text-brand font-medium uppercase tracking-wider group-hover:text-gold transition-colors">Get a Quote →</div>
         </div>
       </div>
     </Link>
