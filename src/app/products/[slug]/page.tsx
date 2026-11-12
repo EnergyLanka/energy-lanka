@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
-import AddToCart from "./AddToCart";
+import Link from "next/link";
 import ProductImage from "@/components/ProductImage";
 
 export default async function ProductDetail({ params }: { params: { slug: string } }) {
@@ -20,11 +20,11 @@ export default async function ProductDetail({ params }: { params: { slug: string
         <p className="mt-4 text-slate-700">{product.description}</p>
 
         <div className="mt-6 rounded-2xl bg-white p-4 ring-1 ring-slate-200">
-          <div className="text-2xl font-bold text-brand">LKR {product.priceLKR.toLocaleString()}</div>
-          <div className="text-xs text-slate-500">Incl. equipment. Installation quoted separately.</div>
+          <div className="text-2xl font-bold text-brand">Price on request</div>
+          <div className="text-xs text-slate-500">Contact us for a quote. Installation quoted separately.</div>
         </div>
 
-        <AddToCart product={{ id: product.id, slug: product.slug, name: product.name, priceLKR: product.priceLKR }} />
+        <Link href={`/quote?product=${encodeURIComponent(product.name)}`} className="btn-primary mt-4 inline-block">Request a quote</Link>
 
         <div className="mt-6">
           <h2 className="font-semibold">Specifications</h2>
